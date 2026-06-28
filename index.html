@@ -1,0 +1,1245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Priyanshi Chaudhary — Performance Marketer · Paid Media, Landing Pages & Conversions</title>
+<meta name="description" content="Performance marketer running full-funnel Meta & Google campaigns end-to-end — audience architecture, creative briefing, landing pages, SQL-backed analysis. Built for D2C brands and growth agencies." />
+<meta property="og:title" content="Priyanshi Chaudhary — Performance Marketer" />
+<meta property="og:description" content="Full-funnel paid media, landing pages, and the measurement layer underneath it. Meta · Google · PostHog · SQL." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --paper:#F7F6F1;         /* warm off-white background */
+  --ink:#16161C;           /* near-black text */
+  --ink-soft:#4C4C57;
+  --cobalt:#2B45F0;        /* THE single accent */
+  --cobalt-deep:#1D31B8;   /* accent hover */
+  --cobalt-lite:#8FA0FF;   /* lighter cobalt for accents on dark sections */
+  --wash:#DCE0FF;          /* pale cobalt wash — highlight bars / tinted panels */
+  --lilac:#DCE0FF;         /* alias kept for existing rules → pale cobalt wash */
+  --card:#FFFFFF;
+  --line:#E2E0D8;
+  --hair:rgba(22,22,28,.13); /* editorial hairline rule */
+  --radius:18px;
+  --maxw:1120px;
+  --display:'Fraunces',Georgia,serif;
+  --body:'DM Sans',-apple-system,sans-serif;
+  --mono:'Space Mono',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--body);
+  font-size:17px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{background:var(--cobalt);color:#fff;}
+a{color:inherit;}
+img{max-width:100%;display:block;}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px;}
+.mono{font-family:var(--mono);}
+.eyebrow{
+  font-family:var(--mono);
+  font-size:12px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--cobalt);
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+}
+.eyebrow::before{content:"";width:22px;height:2px;background:var(--cobalt);}
+h2.section-title{
+  font-family:var(--display);
+  font-weight:600;
+  font-size:clamp(32px,4.5vw,52px);
+  line-height:1.08;
+  letter-spacing:-0.01em;
+  margin:14px 0 18px;
+}
+.section{padding:96px 0;}
+.section + .section{border-top:1px solid var(--line);}
+
+/* ---------- Reveal on scroll ---------- */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease;}
+.reveal.in{opacity:1;transform:none;}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto;}
+  .reveal{opacity:1;transform:none;transition:none;}
+  .ticker-track,.marquee-track{animation:none !important;}
+}
+
+/* ---------- Nav ---------- */
+nav{
+  position:sticky;top:0;z-index:50;
+  background:rgba(247,246,241,.85);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid transparent;
+  transition:border-color .3s;
+}
+nav.scrolled{border-bottom-color:var(--line);}
+.nav-inner{
+  max-width:var(--maxw);margin:0 auto;padding:16px 24px;
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+}
+.logo{font-family:var(--display);font-weight:700;font-size:19px;text-decoration:none;letter-spacing:-.01em;}
+.logo span{color:var(--cobalt);}
+.nav-links{display:flex;gap:26px;align-items:center;list-style:none;}
+.nav-links a{
+  text-decoration:none;font-size:14.5px;font-weight:500;color:var(--ink-soft);
+  transition:color .2s;
+}
+.nav-links a:hover{color:var(--ink);}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--ink);color:#fff;
+  font-family:var(--body);font-weight:500;font-size:15px;
+  padding:11px 20px;border-radius:999px;text-decoration:none;
+  border:1.5px solid var(--ink);cursor:pointer;
+  transition:transform .15s ease,background .2s,color .2s;
+}
+.btn:hover{transform:translateY(-2px);background:var(--cobalt);border-color:var(--cobalt);}
+.btn.ghost{background:transparent;color:var(--ink);}
+.btn.ghost:hover{background:var(--ink);color:#fff;}
+.btn.primary{background:var(--cobalt);color:#fff;border-color:var(--cobalt);}
+.btn.primary:hover{background:var(--cobalt-deep);color:#fff;border-color:var(--cobalt-deep);}
+@media(max-width:760px){.nav-links li:not(:last-child){display:none;}}
+
+/* ---------- Hero (editorial / magazine — no photo) ---------- */
+.hero{padding:60px 0 96px;overflow:hidden;}
+/* editorial badge row, separated by a hairline rule */
+.hero-badgerow{
+  display:flex;align-items:center;gap:16px;flex-wrap:wrap;
+  padding-bottom:22px;margin-bottom:34px;border-bottom:1px solid var(--hair);
+}
+/* the site's signature mark: a solid cobalt dot */
+.dot{width:16px;height:16px;border-radius:50%;background:var(--cobalt);flex:none;}
+.avail{
+  display:inline-flex;align-items:center;
+  font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ink);background:transparent;border:1px solid var(--hair);
+  padding:8px 16px;border-radius:999px;
+}
+/* the dominant, edge-to-edge headline */
+.hero-title{
+  font-family:var(--display);
+  font-weight:700;
+  font-size:clamp(23px,10vw,123px);
+  line-height:.95;
+  letter-spacing:-0.04em;
+  margin:0;
+}
+.hero-title em{
+  font-style:normal;font-weight:700;
+  background:linear-gradient(transparent 58%,var(--wash) 58%);
+  padding:0 .03em;
+}
+/* lower row: left tagline + CTAs, right-aligned pointers */
+.hero-lower{
+  margin-top:46px;display:flex;gap:56px;align-items:flex-start;justify-content:space-between;
+}
+.hero-left{max-width:560px;}
+.hero-sub{font-size:18.5px;line-height:1.55;color:var(--ink-soft);}
+.hero-sub strong{color:var(--ink);font-weight:600;}
+.hero-ctas{margin-top:30px;display:flex;gap:14px;flex-wrap:wrap;}
+/* right-aligned three-pointer stat column */
+.hero-pointers{
+  flex:none;width:340px;max-width:42%;text-align:right;
+  display:flex;flex-direction:column;
+}
+.pointer{padding:16px 0;border-top:1px solid var(--line);}
+.pointer:first-child{border-top:none;padding-top:4px;}
+.pointer .ptop{
+  font-family:var(--body);font-weight:700;font-size:clamp(18px,1.6vw,22px);
+  text-transform:uppercase;letter-spacing:-.005em;line-height:1.1;color:var(--ink);
+}
+.pointer .ptop .ac{color:var(--cobalt);}
+.pointer .pcap{
+  font-family:var(--mono);font-size:11.5px;letter-spacing:.03em;
+  color:var(--ink-soft);margin-top:7px;line-height:1.5;
+}
+
+/* the signature: a literal "ad unit" */
+.ad-card{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  box-shadow:0 30px 60px -30px rgba(22,22,28,.25);
+  overflow:hidden;
+  transform:rotate(2deg);
+  transition:transform .35s ease,box-shadow .35s ease;
+}
+.ad-card:hover{transform:rotate(0deg) translateY(-4px);box-shadow:0 40px 70px -30px rgba(43,69,240,.35);}
+.ad-head{display:flex;align-items:center;gap:12px;padding:16px 18px 12px;}
+.ad-avatar{
+  width:42px;height:42px;border-radius:50%;
+  background:var(--cobalt);color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--display);font-weight:700;font-size:18px;
+}
+.ad-name{font-weight:700;font-size:15px;line-height:1.25;}
+.ad-sponsored{font-size:12.5px;color:var(--ink-soft);}
+.ad-sponsored b{color:var(--cobalt);font-weight:500;}
+.ad-creative{
+  background:radial-gradient(120% 120% at 0% 0%,#1B1B22 0%,#0C0C0E 70%);
+  color:#fff;padding:26px 22px 24px;position:relative;
+}
+.ad-creative .ad-line{
+  font-family:var(--display);font-style:italic;font-weight:500;
+  font-size:clamp(20px,2.2vw,25px);line-height:1.28;
+}
+.ad-creative .ad-tag{
+  position:absolute;top:14px;right:14px;
+  background:var(--wash);color:var(--ink);
+  font-family:var(--mono);font-size:10px;letter-spacing:.12em;font-weight:700;
+  padding:4px 9px;border-radius:6px;text-transform:uppercase;
+}
+/* mini "7-day performance" sparkbars inside the creative */
+.ad-graph{display:flex;align-items:flex-end;gap:5px;height:44px;margin-top:20px;}
+.ad-graph .bar{flex:1;background:rgba(255,255,255,.18);border-radius:3px 3px 0 0;transition:height .6s ease;}
+.ad-graph .bar.peak{background:var(--cobalt-lite);}
+.ad-graph-cap{
+  display:flex;justify-content:space-between;align-items:center;margin-top:10px;
+  font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;
+  color:rgba(255,255,255,.5);
+}
+.ad-graph-cap i{font-style:normal;color:var(--cobalt-lite);}
+.ad-metrics{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  border-top:1px solid var(--line);
+}
+.ad-metric{padding:15px 10px;text-align:center;}
+.ad-metric + .ad-metric{border-left:1px solid var(--line);}
+.ad-metric b{font-family:var(--mono);font-weight:700;font-size:20px;display:block;color:var(--ink);}
+.ad-metric span{font-size:10.5px;color:var(--ink-soft);letter-spacing:.06em;text-transform:uppercase;font-family:var(--mono);margin-top:2px;display:block;}
+.ad-cta{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 18px;border-top:1px solid var(--line);gap:12px;
+}
+.ad-cta p{font-size:13px;color:var(--ink-soft);}
+.ad-cta a{
+  background:var(--ink);color:#fff;text-decoration:none;font-weight:500;
+  font-size:13.5px;padding:9px 16px;border-radius:8px;white-space:nowrap;
+  transition:background .2s;
+}
+.ad-cta a:hover{background:var(--cobalt);}
+
+/* ticker */
+.ticker{
+  margin-top:64px;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);
+  background:var(--ink);color:var(--paper);overflow:hidden;white-space:nowrap;
+}
+.ticker-track{
+  display:inline-flex;gap:0;padding:12px 0;
+  animation:ticker 28s linear infinite;
+}
+.ticker-track span{
+  font-family:var(--mono);font-size:13px;letter-spacing:.06em;padding:0 28px;
+  display:inline-flex;align-items:center;gap:10px;
+}
+.ticker-track span i{font-style:normal;color:var(--cobalt-lite);}
+@keyframes ticker{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+@media(max-width:760px){
+  .hero{padding:48px 0 72px;}
+  .hero-lower{flex-direction:column;gap:36px;margin-top:38px;}
+  .hero-pointers{width:100%;max-width:none;text-align:left;}
+  .pointer:first-child{border-top:1px solid var(--line);padding-top:16px;}
+}
+
+/* ---------- Why (heading + draggable scatter) ---------- */
+#why{background:var(--paper);padding-top:40px;}
+.why-head{margin-bottom:24px;}
+.scatter{
+  position:relative;width:100%;height:800px;
+  border:1px solid var(--line);border-radius:16px;overflow:hidden;
+  background:var(--paper);touch-action:none;
+}
+/* poster-like watermark behind the cards */
+.scatter-mark{
+  position:absolute;inset:0;z-index:1;
+  display:flex;align-items:center;justify-content:center;text-align:center;
+  padding:24px;pointer-events:none;user-select:none;
+  font-family:var(--display);font-weight:700;text-transform:uppercase;
+  font-size:clamp(46px,11.5vw,150px);line-height:.9;letter-spacing:-.02em;
+  color:rgba(22,22,28,.07);
+}
+/* draggable cards (scaled up ~30%) */
+.scard{
+  position:absolute;z-index:2;
+  background:var(--card);border:1px solid var(--line);border-radius:14px;
+  box-shadow:0 10px 30px -18px rgba(22,22,28,.45);
+  padding:20px 23px;cursor:grab;touch-action:none;user-select:none;
+  font-size:18px;line-height:1.42;color:var(--ink);
+}
+.scard.dragging{cursor:grabbing;}
+.scard b{font-weight:700;}
+.scard.closer{
+  background:var(--cobalt);color:#fff;border:none;
+  font-family:var(--display);font-style:italic;font-weight:500;
+  font-size:25px;line-height:1.3;
+}
+.scard.imgcard{padding:12px;}
+.scard.imgcard .imgbox{
+  position:relative;aspect-ratio:1;border-radius:10px;overflow:hidden;background:#D7D5CC;
+}
+.scard.imgcard img{
+  display:block;width:100%;height:100%;object-fit:cover;
+  filter:grayscale(100%) contrast(1.05);transition:filter .4s ease;
+}
+.scard.imgcard:hover img{filter:none;}
+.scard.imgcard .idot{
+  position:absolute;top:10px;left:10px;width:14px;height:14px;border-radius:50%;
+  background:var(--cobalt);z-index:2;
+}
+.scard.imgcard .cap{
+  font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--ink-soft);margin-top:10px;
+}
+.scatter-hint{
+  position:absolute;left:50%;bottom:18px;transform:translateX(-50%);z-index:2;
+  font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+  color:#A6A39A;pointer-events:none;
+}
+/* ---- mobile: collapse the scatter into a clean static stack ---- */
+@media(max-width:760px){
+  .scatter{
+    height:auto;overflow:visible;border:none;border-radius:0;background:transparent;
+    touch-action:auto;display:flex;flex-direction:column;gap:16px;
+  }
+  .scard{
+    position:static !important;transform:none !important;
+    left:auto !important;top:auto !important;width:auto !important;
+    z-index:auto !important;cursor:default;
+  }
+  .scard.imgcard{max-width:320px;}
+  .scatter-hint{display:none;}
+  .scatter-mark{display:none;}
+}
+
+/* ---------- Experience ---------- */
+.xp-intro{max-width:620px;color:var(--ink-soft);margin-bottom:54px;}
+.xp{
+  display:grid;grid-template-columns:260px 1fr;gap:40px;padding:46px 24px;
+  border-top:1px solid var(--line);border-radius:16px;margin:0 -24px;
+  transition:background .25s ease,box-shadow .25s ease;
+}
+.xp:hover{background:var(--card);box-shadow:0 24px 50px -34px rgba(12,12,14,.4);}
+.xp:last-of-type{border-bottom:1px solid var(--line);}
+.xp-when{font-family:var(--mono);font-size:12.5px;letter-spacing:.08em;color:var(--ink-soft);text-transform:uppercase;}
+.xp-when .live{
+  display:inline-flex;align-items:center;gap:7px;margin-top:10px;
+  background:var(--cobalt);color:#fff;padding:4px 11px;border-radius:999px;
+  font-size:11px;
+}
+.xp-when .live::before{
+  content:"";width:7px;height:7px;border-radius:50%;background:#fff;
+  animation:pulse 1.8s ease infinite;
+}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.25;}}
+.xp-role{font-family:var(--display);font-weight:600;font-size:26px;line-height:1.15;}
+.xp-org{color:var(--ink-soft);font-size:15.5px;margin-top:4px;}
+.xp-summary{margin:16px 0 8px;color:var(--ink-soft);max-width:640px;}
+.xp-points{list-style:none;margin-top:18px;}
+.xp-points li{
+  display:grid;grid-template-columns:148px 1fr;gap:18px;
+  padding:14px 0;border-top:1px dashed var(--line);align-items:baseline;
+}
+.xp-points .tag{
+  font-family:var(--mono);font-size:11px;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--cobalt);
+}
+.xp-points .pt{font-size:16px;color:var(--ink);}
+.xp-points .pt b{background:linear-gradient(transparent 62%,var(--lilac) 62%);font-weight:600;}
+.xp-toggle{
+  margin-top:16px;background:none;border:none;cursor:pointer;
+  font-family:var(--mono);font-size:12.5px;letter-spacing:.08em;color:var(--cobalt);
+  text-transform:uppercase;display:inline-flex;gap:8px;align-items:center;padding:6px 0;
+}
+.xp-toggle:hover{text-decoration:underline;}
+.xp-toggle:focus-visible{outline:2px solid var(--cobalt);outline-offset:3px;}
+.xp-points li.xp-extra{display:none;}
+.xp.open .xp-points li.xp-extra{display:grid;}
+/* collapse the third role card behind a Show more toggle */
+.xp-collapsible{display:none;}
+.xp-collapsible.show{display:grid;}
+.xp-more-wrap{margin-top:30px;}
+.xp-more-btn{
+  display:inline-flex;align-items:center;gap:9px;cursor:pointer;
+  background:transparent;border:1.5px solid var(--cobalt);color:var(--cobalt);
+  font-family:var(--mono);font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;
+  padding:11px 22px;border-radius:999px;transition:background .2s,color .2s;
+}
+.xp-more-btn::before{content:"+";font-size:15px;line-height:1;}
+.xp-more-btn[aria-expanded="true"]::before{content:"\2013";}
+.xp-more-btn:hover{background:var(--cobalt);color:#fff;}
+.xp-more-btn:focus-visible{outline:2px solid var(--cobalt);outline-offset:3px;}
+@media(max-width:860px){
+  .xp{grid-template-columns:1fr;gap:14px;padding:36px 0;}
+  .xp-points li{grid-template-columns:1fr;gap:4px;padding:12px 0;}
+}
+
+/* ---------- Funnel ---------- */
+.funnel-section{
+  background:radial-gradient(130% 90% at 100% 0%,#1A1A21 0%,var(--ink) 55%);
+  color:var(--paper);
+}
+.funnel-section .eyebrow{color:var(--cobalt-lite);}
+.funnel-section .eyebrow::before{background:var(--cobalt-lite);}
+/* progress-driven scroll funnel */
+.funnel-wrap{display:grid;grid-template-columns:.82fr 1.18fr;gap:64px;align-items:start;margin-top:8px;}
+/* LEFT: headline + funnel graphic, pinned together */
+.funnel-left{position:sticky;top:108px;}
+.funnel-head{margin-bottom:30px;}
+.funnel-viz{display:flex;flex-direction:column;align-items:center;gap:13px;}
+.fband{
+  width:100%;border-radius:14px;border:1px solid rgba(247,246,241,.25);
+  background:transparent;color:rgba(247,246,241,.5);text-align:center;padding:22px 18px;
+  transition:background .4s ease,border-color .4s ease,color .4s ease;
+}
+.fband:nth-child(2){width:84%;}
+.fband:nth-child(3){width:68%;}
+.fband.foundation{width:100%;}
+.fband .fb-l{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;}
+.fband .fb-n{display:block;font-family:var(--display);font-weight:600;font-size:18px;margin-top:4px;}
+.fband.filled{background:var(--cobalt);border-color:var(--cobalt);color:#fff;}
+.fband.foundation.filled{box-shadow:0 18px 44px -20px var(--cobalt);}
+/* RIGHT: stage steps that scroll past, revealing in sequence */
+.funnel-steps{display:flex;flex-direction:column;}
+.fstep{
+  min-height:60vh;display:flex;flex-direction:column;justify-content:center;
+  padding:30px 0;border-top:1px solid rgba(247,246,241,.12);
+  opacity:.3;transform:translateY(16px);
+  transition:opacity .5s ease,transform .5s ease;
+}
+.fstep:first-child{border-top:none;}
+.fstep.active{opacity:1;transform:none;}
+.fstep .fs-label{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--cobalt-lite);}
+.fstep h3{font-family:var(--display);font-weight:600;font-size:clamp(24px,3vw,34px);line-height:1.15;margin-top:8px;}
+.fstep p{color:rgba(247,246,241,.72);margin:14px 0 20px;max-width:520px;}
+.fband-m{display:none;}
+.chiplist{display:flex;flex-wrap:wrap;gap:10px;}
+.chip{
+  font-family:var(--mono);font-size:12.5px;letter-spacing:.04em;
+  border:1px solid rgba(247,246,241,.28);border-radius:999px;padding:7px 14px;
+  color:var(--paper);transition:border-color .2s,color .2s,background .2s;
+}
+.chip:hover{border-color:var(--cobalt-lite);color:var(--cobalt-lite);}
+/* ---- mobile: static stacked list, each stage's band inline + filled ---- */
+@media(max-width:760px){
+  .funnel-wrap{display:block;margin-top:14px;}
+  .funnel-left{position:static;}
+  .funnel-head{margin-bottom:8px;}
+  .funnel-viz{display:none;}
+  .fstep{min-height:auto;padding:22px 0;opacity:1 !important;transform:none !important;border-top:none;}
+  .fstep .fs-label{display:none;}
+  .fband-m{
+    display:block;background:var(--cobalt);color:#fff;border-radius:12px;
+    padding:14px 16px;margin-bottom:16px;
+    font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+  }
+  .fband-m b{display:block;margin-top:3px;font-family:var(--display);font-weight:600;font-size:15px;text-transform:none;letter-spacing:0;}
+}
+
+/* ---------- Toolbox marquee ---------- */
+.toolbox{padding:64px 0;border-top:1px solid var(--line);}
+.marquee{overflow:hidden;margin-top:30px;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
+  mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
+}
+.marquee-track{display:inline-flex;gap:14px;padding:6px 0;animation:ticker 32s linear infinite;white-space:nowrap;}
+.marquee.reverse .marquee-track{animation-direction:reverse;animation-duration:38s;}
+.tool{
+  display:inline-flex;align-items:center;justify-content:center;
+  background:var(--card);border:1px solid var(--line);border-radius:12px;
+  padding:0 26px;height:62px;
+}
+.tool-logo{
+  height:30px;width:auto;display:block;
+  filter:grayscale(1);opacity:.8;
+  transition:filter .3s ease,opacity .3s ease;
+}
+.tool:hover .tool-logo{filter:none;opacity:1;}
+.tool-txt{display:none;font-size:15px;font-weight:500;color:var(--ink);white-space:nowrap;}
+
+/* ---------- FAQ ---------- */
+.faq-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:64px;align-items:start;}
+.faq-item{border-bottom:1px solid var(--line);}
+.faq-q{
+  width:100%;background:none;border:none;cursor:pointer;text-align:left;
+  display:flex;justify-content:space-between;align-items:center;gap:18px;
+  padding:22px 4px;font-family:var(--body);font-size:18px;font-weight:500;color:var(--ink);
+}
+.faq-q:focus-visible{outline:2px solid var(--cobalt);outline-offset:3px;}
+.faq-q .ico{
+  flex:none;width:30px;height:30px;border-radius:50%;border:1.5px solid var(--ink);
+  display:flex;align-items:center;justify-content:center;font-size:17px;
+  transition:transform .3s,background .2s,color .2s;
+}
+.faq-item.open .ico{transform:rotate(45deg);background:var(--cobalt);color:#fff;border-color:var(--cobalt);}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease;}
+.faq-a p{padding:0 4px 22px;color:var(--ink-soft);max-width:560px;}
+@media(max-width:900px){.faq-grid{grid-template-columns:1fr;gap:24px;}}
+
+/* ---------- Footer / Contact (editorial) ---------- */
+.site-footer{padding:100px 0 32px;border-top:1px solid var(--line);margin-top:48px;}
+.footer-top{
+  display:grid;grid-template-columns:1.25fr .75fr;gap:60px;align-items:start;
+  padding-bottom:72px;
+}
+.footer-cta{position:relative;padding-top:30px;}
+.footer-cta::before{
+  content:"";position:absolute;left:2px;top:0;
+  width:15px;height:15px;border-radius:50%;background:var(--cobalt);
+}
+.footer-headline{
+  font-family:var(--display);font-weight:600;
+  font-size:clamp(34px,5.4vw,70px);line-height:1.0;letter-spacing:-.02em;
+}
+.footer-headline em{font-style:italic;font-weight:500;color:var(--cobalt);}
+.footer-sub{margin-top:20px;font-size:18px;color:var(--ink-soft);}
+.footer-contact{display:flex;flex-direction:column;gap:36px;padding-top:30px;}
+.footer-email{
+  font-family:var(--display);font-weight:500;color:var(--ink);
+  font-size:clamp(16px,1.95vw,25px);line-height:1.25;white-space:nowrap;
+  text-decoration:underline;text-decoration-color:var(--cobalt);
+  text-decoration-thickness:2px;text-underline-offset:5px;transition:color .2s;
+}
+.footer-email:hover{color:var(--cobalt);}
+.footer-links{display:flex;flex-direction:column;gap:11px;}
+.footer-links-label{
+  font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ink-soft);margin-bottom:5px;
+}
+.footer-links a{
+  width:fit-content;display:inline-flex;align-items:center;gap:9px;
+  font-size:17px;font-weight:500;color:var(--ink);text-decoration:none;transition:color .2s;
+}
+.footer-links a::before{content:"\2192";color:var(--cobalt);font-size:14px;}
+.footer-links a:hover{color:var(--cobalt);}
+/* giant full-width brand wordmark */
+.footer-wordmark{
+  font-family:var(--display);font-weight:700;color:var(--cobalt);
+  font-size:clamp(30px,6.4vw,82px);line-height:1;letter-spacing:-.03em;
+  white-space:nowrap;padding-top:6px;
+}
+.footer-wordmark .wm-dot{color:var(--cobalt);}
+/* thin bottom bar */
+.footer-bar{
+  margin-top:26px;padding-top:22px;border-top:1px solid var(--line);
+  display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+  font-size:13.5px;color:var(--ink-soft);
+}
+@media(max-width:760px){
+  .site-footer{padding:64px 0 26px;margin-top:24px;}
+  .footer-top{grid-template-columns:1fr;gap:42px;padding-bottom:48px;}
+  .footer-wordmark{font-size:clamp(24px,7vw,54px);}
+  .footer-bar{flex-direction:column;gap:8px;}
+}
+
+/* ---------- Modal (Let's talk form) ---------- */
+.modal-overlay{
+  position:fixed;inset:0;z-index:100;
+  background:rgba(22,22,28,.55);backdrop-filter:blur(4px);
+  display:flex;align-items:center;justify-content:center;padding:24px;
+  opacity:0;visibility:hidden;transition:opacity .25s ease,visibility .25s ease;
+}
+.modal-overlay.show{opacity:1;visibility:visible;}
+.modal{
+  background:var(--card);border-radius:22px;max-width:440px;width:100%;
+  overflow:hidden;box-shadow:0 40px 80px -30px rgba(22,22,28,.5);
+  transform:translateY(16px) scale(.98);transition:transform .3s ease;
+}
+.modal-overlay.show .modal{transform:none;}
+.modal-top{background:var(--ink);color:var(--paper);padding:24px 26px;position:relative;}
+.modal-top .eyebrow{color:var(--cobalt-lite);}
+.modal-top .eyebrow::before{background:var(--cobalt-lite);}
+.modal-top h3{font-family:var(--display);font-weight:600;font-size:25px;line-height:1.12;margin-top:10px;}
+.modal-top p{font-size:14px;color:rgba(247,246,241,.78);margin-top:6px;}
+.modal-close{
+  position:absolute;top:16px;right:16px;width:32px;height:32px;border-radius:50%;
+  border:none;cursor:pointer;background:rgba(247,246,241,.16);color:var(--paper);
+  font-size:20px;line-height:1;display:flex;align-items:center;justify-content:center;
+  transition:background .2s;
+}
+.modal-close:hover{background:rgba(247,246,241,.3);}
+.modal-close:focus-visible{outline:2px solid var(--cobalt-lite);outline-offset:2px;}
+.modal-body{padding:24px 26px 26px;}
+.field{margin-bottom:16px;}
+.field label{display:block;font-size:13.5px;font-weight:500;margin-bottom:6px;color:var(--ink);}
+.field label .opt{color:var(--ink-soft);font-weight:400;font-family:var(--mono);font-size:11px;letter-spacing:.04em;}
+.field input,.field select{
+  width:100%;padding:11px 14px;font-family:var(--body);font-size:15px;color:var(--ink);
+  background:var(--paper);border:1.5px solid var(--line);border-radius:10px;
+  transition:border-color .2s;
+}
+.field input:focus,.field select:focus{outline:none;border-color:var(--cobalt);}
+.field .err{display:none;color:var(--cobalt);font-size:12.5px;margin-top:5px;font-family:var(--mono);}
+.field.invalid input,.field.invalid select{border-color:var(--cobalt);}
+.field.invalid .err{display:block;}
+.modal-submit{
+  width:100%;margin-top:6px;background:var(--ink);color:#fff;border:1.5px solid var(--ink);
+  font-family:var(--body);font-weight:500;font-size:15.5px;padding:13px;border-radius:999px;
+  cursor:pointer;transition:transform .15s ease,background .2s,border-color .2s;
+}
+.modal-submit:hover{transform:translateY(-2px);background:var(--cobalt);border-color:var(--cobalt);}
+.modal-submit:focus-visible{outline:2px solid var(--cobalt);outline-offset:3px;}
+.modal-note{font-size:12px;color:var(--ink-soft);text-align:center;margin-top:13px;}
+.modal-success{display:none;text-align:center;padding:14px 0 4px;}
+.modal-success.show{display:block;}
+.modal-success .tick{
+  width:54px;height:54px;border-radius:50%;background:var(--cobalt);color:#fff;
+  display:flex;align-items:center;justify-content:center;font-size:26px;margin:0 auto 14px;
+}
+.modal-success h4{font-family:var(--display);font-weight:600;font-size:22px;}
+.modal-success p{color:var(--ink-soft);font-size:14.5px;margin-top:8px;}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="nav-inner">
+    <a class="logo" href="#top">priyanshicreates4u<span>.</span></a>
+    <ul class="nav-links">
+      <li><a href="#why">Why</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#funnel">Capabilities</a></li>
+      <li><a href="#faq">FAQs</a></li>
+      <li><button class="btn ghost" type="button" data-open-modal style="padding:9px 18px;font-size:14px;">Let's talk</button></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ================= HERO ================= -->
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="hero-badgerow reveal">
+      <span class="dot" aria-hidden="true"></span>
+      <span class="avail">Priyanshi Chaudhary · Growth &amp; Performance Marketer</span>
+    </div>
+
+    <h1 class="hero-title reveal">Growth you can <em>measure</em> across every channel I run.</h1>
+
+    <div class="hero-lower reveal">
+      <div class="hero-left">
+        <p class="hero-sub">
+          I'm a <strong>media buyer</strong>, brand-creative lead, <strong>landing-page designer</strong>,
+          and growth analyst — all in one. I run full-funnel campaigns end-to-end on Meta &amp; Google,
+          write the SQL and <strong>attribution</strong> logic behind the data, and use AI automation
+          to turn insights into faster decisions.
+        </p>
+        <div class="hero-ctas">
+          <a class="btn primary" href="mailto:priyanshicreates4u@gmail.com">Work with me →</a>
+          <a class="btn ghost" href="#experience">See the receipts</a>
+        </div>
+      </div>
+
+      <div class="hero-pointers">
+        <div class="pointer">
+          <div class="ptop"><span class="ac">20+</span> Months</div>
+          <div class="pcap">full-funnel ownership</div>
+        </div>
+        <div class="pointer">
+          <div class="ptop">Jack of all trades</div>
+          <div class="pcap">media · creative · LP · SEO · attribution · analytics</div>
+        </div>
+        <div class="pointer">
+          <div class="ptop">What I do best</div>
+          <div class="pcap">CRO · scaling brands · funnel optimization</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-track" id="ticker">
+      <span>META ADS <i>▲ Lead Gen / Engagement / Traffic / Awareness / WhatsApp (MOFU)</i></span>
+      <span>GOOGLE ADS <i>▲ Video / Search / PMax / Demand Gen</i></span>
+      <span>LANDING PAGES <i>▲ Built end-to-end</i></span>
+      <span>SQL · METABASE <i>▲ Self-serve dashboards</i></span>
+      <span>POSTHOG <i>▲ Full user tracking &amp; behaviour</i></span>
+      <span>QUALITY SCORE <i>▲ SEO-optimised LPs</i></span>
+      <span>CPL <i>▼ Watching it like a hawk</i></span>
+      <span>ATTRIBUTION <i>▲ UTM Params</i></span>
+      <!-- duplicate set for seamless -50% loop -->
+      <span>META ADS <i>▲ Lead Gen / Engagement / Traffic / Awareness / WhatsApp (MOFU)</i></span>
+      <span>GOOGLE ADS <i>▲ Video / Search / PMax / Demand Gen</i></span>
+      <span>LANDING PAGES <i>▲ Built end-to-end</i></span>
+      <span>SQL · METABASE <i>▲ Self-serve dashboards</i></span>
+      <span>POSTHOG <i>▲ Full user tracking &amp; behaviour</i></span>
+      <span>QUALITY SCORE <i>▲ SEO-optimised LPs</i></span>
+      <span>CPL <i>▼ Watching it like a hawk</i></span>
+      <span>ATTRIBUTION <i>▲ UTM Params</i></span>
+    </div>
+  </div>
+</header>
+
+<!-- ================= WHY ================= -->
+<section class="section" id="why">
+  <div class="wrap reveal">
+    <div class="why-head">
+      <span class="eyebrow">The why behind my work</span>
+    </div>
+    <div class="scatter" id="scatter">
+      <div class="scatter-mark" aria-hidden="true">Why behind<br />my work</div>
+
+      <!-- text card -->
+      <div class="scard" style="left:40px;top:48px;width:322px;transform:rotate(-3deg);">
+        A product is only a product — until it reaches someone and becomes the
+        <b>solution to a problem they didn't know they had.</b>
+      </div>
+
+      <!-- text card -->
+      <div class="scard" style="left:700px;top:36px;width:280px;transform:rotate(2deg);">
+        You can build a business on a great product. But adoption, usage, and scale?
+        <b>That takes marketing.</b>
+      </div>
+
+      <!-- text card -->
+      <div class="scard" style="left:372px;top:162px;width:332px;transform:rotate(1deg);">
+        Brand story, creative, campaign — gimmicks and non-gimmicks alike — can shift a product's
+        <b>entire trajectory.</b>
+      </div>
+
+      <!-- photo card -->
+      <div class="scard imgcard" style="left:812px;top:196px;width:208px;transform:rotate(3deg);">
+        <div class="imgbox">
+          <span class="idot"></span>
+          <img src="ME.jpg" alt="Priyanshi Chaudhary" onerror="this.style.display='none';" />
+        </div>
+        <div class="cap">Priyanshi · Hyderabad</div>
+      </div>
+
+      <!-- image card -->
+      <div class="scard imgcard" style="left:430px;top:432px;width:195px;transform:rotate(-4deg);">
+        <div class="imgbox">
+          <span class="idot"></span>
+          <img src="why1.jpg" alt="" onerror="this.style.display='none';" />
+        </div>
+        <div class="cap">On set / briefing</div>
+      </div>
+
+      <!-- image card -->
+      <div class="scard imgcard" style="left:700px;top:452px;width:220px;transform:rotate(4deg);">
+        <div class="imgbox">
+          <span class="idot"></span>
+          <img src="why2.jpg" alt="" onerror="this.style.display='none';" />
+        </div>
+        <div class="cap">The work</div>
+      </div>
+
+      <!-- image card -->
+      <div class="scard imgcard" style="left:170px;top:498px;width:188px;transform:rotate(-2deg);">
+        <div class="imgbox">
+          <span class="idot"></span>
+          <img src="why3.jpg" alt="" onerror="this.style.display='none';" />
+        </div>
+        <div class="cap">Behind the scenes</div>
+      </div>
+
+      <div class="scatter-hint" aria-hidden="true">Drag the cards</div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= EXPERIENCE ================= -->
+<section class="section" id="experience">
+  <div class="wrap">
+    <div class="reveal">
+      <span class="eyebrow">Experience</span>
+      <h2 class="section-title">Experience</h2>
+    </div>
+
+    <!-- Growth Associate -->
+    <article class="xp reveal" id="xp1">
+      <div>
+        <div class="xp-when">Jun 2025 — Present</div>
+        <div class="xp-when"><span class="live">Currently here</span></div>
+      </div>
+      <div>
+        <h3 class="xp-role">Growth Associate</h3>
+        <p class="xp-org">ASBL · Hyderabad — Performance Marketing · Landing Pages · Creative · Analytics</p>
+        <p class="xp-summary">Owning full-funnel Google and Meta campaigns across a real estate product portfolio — volume, lead quality, and CPL across every stage of the funnel.</p>
+        <ul class="xp-points">
+          <li><span class="tag">Campaigns</span><span class="pt"><b>Own full-funnel Meta &amp; Google campaigns</b> across the portfolio — managing volume, lead quality, and CPL across TOFU, MOFU, and BOFU stages.</span></li>
+          <li><span class="tag">Audiences</span><span class="pt">Built an <b>audience performance matrix</b> from historical campaign data to predict optimal targeting segments; designed multi-variant A/B frameworks for continuous creative and audience iteration.</span></li>
+          <li><span class="tag">Landing pages</span><span class="pt">Designed and shipped <b>conversion-focused landing pages end-to-end</b> — UI framework, visual design, SEO-optimised copy — strengthening Google Ads Quality Score and organic rankings.</span></li>
+          <li class="xp-extra"><span class="tag">SQL</span><span class="pt">Write <b>custom SQL in Metabase</b> to extract, segment, and report on campaign and user behaviour; built self-serve dashboards used by marketing and sales teams.</span></li>
+          <li class="xp-extra"><span class="tag">PostHog</span><span class="pt">Built <b>PostHog funnel and event dashboards</b> to surface drop-offs and conversion gaps; established a data-driven creative briefing process across teams.</span></li>
+          <li class="xp-extra"><span class="tag">Attribution</span><span class="pt">Implemented <b>UTM and keyword-level tracking</b> across all paid campaigns; advised sales on lead-journey-informed outreach to lift conversion rates.</span></li>
+          <li class="xp-extra"><span class="tag">Process</span><span class="pt">Led <b>inter-team process documentation and training</b> to improve execution consistency and cross-functional alignment.</span></li>
+        </ul>
+        <button class="xp-toggle" data-target="xp1" aria-expanded="false">+ Show 4 more</button>
+      </div>
+    </article>
+
+    <!-- Intern -->
+    <article class="xp reveal" id="xp2">
+      <div>
+        <div class="xp-when">Nov 2024 — May 2025</div>
+      </div>
+      <div>
+        <h3 class="xp-role">Performance Marketing Intern</h3>
+        <p class="xp-org">ASBL · Hyderabad — Paid Media · Lead Generation · CRM Analysis · Attribution</p>
+        <p class="xp-summary">Six months of full-funnel lead generation with direct attribution to flat sales — and the groundwork for the measurement systems I run today.</p>
+        <ul class="xp-points">
+          <li><span class="tag">Lead gen</span><span class="pt">Executed full-funnel campaigns across Meta &amp; Google with direct attribution to flat sales; <b>reduced sales turnaround time by ~70%</b> through audience testing and funnel refinement.</span></li>
+          <li><span class="tag">Pre-launch LP</span><span class="pt">Built and launched a <b>standalone landing page end-to-end</b> for a pre-launch project — the primary destination for third-party media campaigns.</span></li>
+          <li><span class="tag">Behaviour</span><span class="pt">Analysed campaign and user behaviour via SQL; <b>mapped lead journeys in the CRM</b> to surface patterns that informed targeting and sales outreach.</span></li>
+          <li class="xp-extra"><span class="tag">Attribution</span><span class="pt">Contributed to <b>product logic for an internal attribution reporting system</b>; ran call-transcription analysis to find sales-to-customer communication gaps.</span></li>
+          <li class="xp-extra"><span class="tag">SEO &amp; A/B</span><span class="pt">Performed keyword research and on-page SEO; built <b>A/B testing frameworks</b> for continuous creative and messaging improvement.</span></li>
+        </ul>
+        <button class="xp-toggle" data-target="xp2" aria-expanded="false">+ Show 2 more</button>
+      </div>
+    </article>
+
+    <div class="reveal xp-more-wrap">
+      <button class="xp-more-btn" id="xp-roles-toggle" type="button" aria-expanded="false" aria-controls="xp3">Show more</button>
+    </div>
+
+    <!-- SQL Trainee -->
+    <article class="xp reveal xp-collapsible" id="xp3">
+      <div>
+        <div class="xp-when">Jul 2024</div>
+      </div>
+      <div>
+        <h3 class="xp-role">SQL Trainee Intern</h3>
+        <p class="xp-org">Sonata Finance Pvt Ltd · Lucknow — Data Extraction · MySQL · Financial Datasets</p>
+        <ul class="xp-points">
+          <li><span class="tag">SQL</span><span class="pt">Developed SQL queries for <b>extraction, transformation, and analysis of financial datasets</b> in a production MySQL environment.</span></li>
+          <li><span class="tag">Translation</span><span class="pt">Translated business requirements into technical solutions; recommended database optimisations to the data team.</span></li>
+        </ul>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ================= FUNNEL / CAPABILITIES ================= -->
+<section class="section funnel-section" id="funnel">
+  <div class="wrap">
+    <div class="funnel-wrap reveal">
+      <!-- LEFT: headline + funnel graphic, pinned together while the right column scrolls -->
+      <div class="funnel-left">
+        <div class="funnel-head">
+          <span class="eyebrow">Capabilities</span>
+          <h2 class="section-title" style="color:var(--paper);">Own every stage of your conversion funnel</h2>
+        </div>
+        <div class="funnel-viz" aria-hidden="true">
+          <div class="fband">
+          <span class="fb-l">TOFU · Awareness</span>
+          <span class="fb-n">Get seen by the right people</span>
+        </div>
+        <div class="fband">
+          <span class="fb-l">MOFU · Consideration</span>
+          <span class="fb-n">Earn the second look</span>
+        </div>
+        <div class="fband">
+          <span class="fb-l">BOFU · Conversion</span>
+          <span class="fb-n">Turn intent into pipeline</span>
+        </div>
+        <div class="fband foundation">
+          <span class="fb-l">The layer underneath</span>
+          <span class="fb-n">Measure everything</span>
+        </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: stage detail blocks, revealed in sequence -->
+      <div class="funnel-steps">
+        <div class="fstep" data-step="0">
+          <div class="fband-m">TOFU · Awareness<b>Get seen by the right people</b></div>
+          <span class="fs-label">TOFU · Awareness</span>
+          <h3>Get seen by the right people</h3>
+          <p>Audience architecture from historical performance data, creative hooks briefed from real behavioural insight, and awareness campaigns that don't waste impressions on the wrong eyes.</p>
+          <div class="chiplist">
+            <span class="chip">Meta Awareness &amp; Engagement</span>
+            <span class="chip">Google Demand Gen &amp; Display</span>
+            <span class="chip">Audience performance matrix</span>
+            <span class="chip">Creative briefing &amp; storyboarding</span>
+            <span class="chip">Brand messaging</span>
+          </div>
+        </div>
+
+        <div class="fstep" data-step="1">
+          <div class="fband-m">MOFU · Consideration<b>Earn the second look</b></div>
+          <span class="fs-label">MOFU · Consideration</span>
+          <h3>Earn the second look</h3>
+          <p>Retargeting that respects the user, landing pages built specifically for the campaign, and A/B frameworks that keep creative and messaging improving every cycle.</p>
+          <div class="chiplist">
+            <span class="chip">Retargeting &amp; remarketing</span>
+            <span class="chip">Landing page design (end-to-end)</span>
+            <span class="chip">SEO &amp; Quality Score optimisation</span>
+            <span class="chip">Multi-variant A/B testing</span>
+            <span class="chip">Copywriting</span>
+          </div>
+        </div>
+
+        <div class="fstep" data-step="2">
+          <div class="fband-m">BOFU · Conversion<b>Turn intent into pipeline</b></div>
+          <span class="fs-label">BOFU · Conversion</span>
+          <h3>Turn intent into pipeline</h3>
+          <p>Lead-gen campaigns with direct attribution to revenue, CRO on every form and page, and lead-journey insights handed to sales so conversations start warmer.</p>
+          <div class="chiplist">
+            <span class="chip">Meta &amp; Google Lead Gen</span>
+            <span class="chip">CRO &amp; MQL/SQL optimisation</span>
+            <span class="chip">CRM behavioural analysis</span>
+            <span class="chip">Sales enablement from lead journeys</span>
+            <span class="chip">~70% faster sales turnaround</span>
+          </div>
+        </div>
+
+        <div class="fstep" data-step="3">
+          <div class="fband-m">The layer underneath<b>Measure everything</b></div>
+          <span class="fs-label">The layer underneath</span>
+          <h3>Measure everything</h3>
+          <p>The layer most marketers outsource is the one I own. Custom SQL, self-serve dashboards, event-level attribution — so every decision above the line is backed by something real.</p>
+          <div class="chiplist">
+            <span class="chip">SQL in Metabase</span>
+            <span class="chip">PostHog funnels &amp; events</span>
+            <span class="chip">GA4 &amp; Meta Events Manager</span>
+            <span class="chip">UTM + keyword-level attribution</span>
+            <span class="chip">Attribution system product logic</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TOOLBOX ================= -->
+<section class="toolbox" id="tools">
+  <div class="wrap reveal">
+    <span class="eyebrow">Toolbox</span>
+    <h2 class="section-title">Tools I'm actively working with.</h2>
+  </div>
+  <div class="marquee reveal">
+    <div class="marquee-track">
+      <span class="tool"><img class="tool-logo" src="logo-meta.svg" alt="Meta Ads Manager" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex';"><span class="tool-txt">Meta Ads Manager</span></span>
+      <span class="tool"><img class="tool-logo" src="logo-googleads.svg" alt="Google Ads" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex';"><span class="tool-txt">Google Ads</span></span>
+      <span class="tool"><img class="tool-logo" src="logo-mysql.svg" alt="SQL / MySQL" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex';"><span class="tool-txt">SQL / MySQL</span></span>
+      <span class="tool"><img class="tool-logo" src="logo-metabase.svg" alt="Metabase" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex';"><span class="tool-txt">Metabase</span></span>
+      <span class="tool"><img class="tool-logo" src="logo-posthog.svg" alt="PostHog" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex';"><span class="tool-txt">PostHog</span></span>
+      <span class="tool"><img class="tool-logo" src="logo-ga4.svg" alt="Google Analytics 4" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex';"><span class="tool-txt">Google Analytics 4</span></span>
+      <span class="tool"><img class="tool-logo" src="logo-semrush.svg" alt="SEMrush" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex';"><span class="tool-txt">SEMrush</span></span>
+      <span class="tool"><img class="tool-logo" src="logo-searchconsole.svg" alt="Search Console" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex';"><span class="tool-txt">Search Console</span></span>
+      <!-- duplicate for seamless loop -->
+      <span class="tool"><img class="tool-logo" src="logo-meta.svg" alt="Meta Ads Manager" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex';"><span class="tool-txt">Meta Ads Manager</span></span>
+      <span class="tool"><img class="tool-logo" src="logo-googleads.svg" alt="Google Ads" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex';"><span class="tool-txt">Google Ads</span></span>
+      <span class="tool"><img class="tool-logo" src="logo-mysql.svg" alt="SQL / MySQL" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex';"><span class="tool-txt">SQL / MySQL</span></span>
+      <span class="tool"><img class="tool-logo" src="logo-metabase.svg" alt="Metabase" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex';"><span class="tool-txt">Metabase</span></span>
+      <span class="tool"><img class="tool-logo" src="logo-posthog.svg" alt="PostHog" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex';"><span class="tool-txt">PostHog</span></span>
+      <span class="tool"><img class="tool-logo" src="logo-ga4.svg" alt="Google Analytics 4" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex';"><span class="tool-txt">Google Analytics 4</span></span>
+      <span class="tool"><img class="tool-logo" src="logo-semrush.svg" alt="SEMrush" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex';"><span class="tool-txt">SEMrush</span></span>
+      <span class="tool"><img class="tool-logo" src="logo-searchconsole.svg" alt="Search Console" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex';"><span class="tool-txt">Search Console</span></span>
+    </div>
+  </div>
+  <div class="marquee reverse" style="margin-top:14px;">
+    <div class="marquee-track">
+      <span class="tool"><img class="tool-logo" src="logo-framer.svg" alt="Framer" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex';"><span class="tool-txt">Framer</span></span>
+      <span class="tool"><img class="tool-logo" src="logo-figma.svg" alt="Figma" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex';"><span class="tool-txt">Figma</span></span>
+      <span class="tool"><img class="tool-logo" src="logo-builderio.svg" alt="Builder.io" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex';"><span class="tool-txt">Builder.io</span></span>
+      <span class="tool"><img class="tool-logo" src="logo-wix.svg" alt="Wix" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex';"><span class="tool-txt">Wix</span></span>
+      <span class="tool"><img class="tool-logo" src="logo-makeforms.svg" alt="Makeforms" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex';"><span class="tool-txt">Makeforms</span></span>
+      <span class="tool"><img class="tool-logo" src="logo-claude.svg" alt="Claude" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex';"><span class="tool-txt">Claude</span></span>
+      <span class="tool"><img class="tool-logo" src="logo-cursor.svg" alt="Cursor" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex';"><span class="tool-txt">Cursor</span></span>
+      <span class="tool"><img class="tool-logo" src="logo-python.svg" alt="Python" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex';"><span class="tool-txt">Python</span></span>
+      <span class="tool"><img class="tool-logo" src="logo-git.svg" alt="Git" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex';"><span class="tool-txt">Git</span></span>
+      <span class="tool"><img class="tool-logo" src="logo-vercel.svg" alt="Vercel" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex';"><span class="tool-txt">Vercel</span></span>
+      <!-- duplicate for seamless loop -->
+      <span class="tool"><img class="tool-logo" src="logo-framer.svg" alt="Framer" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex';"><span class="tool-txt">Framer</span></span>
+      <span class="tool"><img class="tool-logo" src="logo-figma.svg" alt="Figma" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex';"><span class="tool-txt">Figma</span></span>
+      <span class="tool"><img class="tool-logo" src="logo-builderio.svg" alt="Builder.io" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex';"><span class="tool-txt">Builder.io</span></span>
+      <span class="tool"><img class="tool-logo" src="logo-wix.svg" alt="Wix" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex';"><span class="tool-txt">Wix</span></span>
+      <span class="tool"><img class="tool-logo" src="logo-makeforms.svg" alt="Makeforms" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex';"><span class="tool-txt">Makeforms</span></span>
+      <span class="tool"><img class="tool-logo" src="logo-claude.svg" alt="Claude" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex';"><span class="tool-txt">Claude</span></span>
+      <span class="tool"><img class="tool-logo" src="logo-cursor.svg" alt="Cursor" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex';"><span class="tool-txt">Cursor</span></span>
+      <span class="tool"><img class="tool-logo" src="logo-python.svg" alt="Python" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex';"><span class="tool-txt">Python</span></span>
+      <span class="tool"><img class="tool-logo" src="logo-git.svg" alt="Git" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex';"><span class="tool-txt">Git</span></span>
+      <span class="tool"><img class="tool-logo" src="logo-vercel.svg" alt="Vercel" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex';"><span class="tool-txt">Vercel</span></span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section class="section" id="faq">
+  <div class="wrap faq-grid">
+    <div class="reveal">
+      <span class="eyebrow">FAQs</span>
+      <h2 class="section-title">Got questions?<br />I've got answers.</h2>
+    </div>
+    <div class="reveal">
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">What kind of brands do you work with? <span class="ico">+</span></button>
+        <div class="faq-a"><p>D2C brands and performance-led agencies who want a person who can own the whole loop — media buying, creative direction, the landing page, and the analysis after. I currently run a real estate portfolio's full paid program, and the playbook transfers to any considered-purchase or lead-gen funnel.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">How do you approach a new project or brand? <span class="ico">+</span></button>
+        <div class="faq-a"><p>Data first, always. I start with whatever historical performance data exists — building an audience matrix from it before spending a rupee. Then creative hypotheses, an A/B framework, a landing page built for the campaign (not borrowed from the website), and tracking set up so every keyword and UTM is accounted for from day one.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">What results can a client expect? <span class="ico">+</span></button>
+        <div class="faq-a"><p>Honest ones. I don't promise a CPL number before seeing your data. What I can promise: a measurement layer you can trust, faster iteration cycles, and decisions backed by SQL instead of vibes. For reference — at ASBL my funnel refinement cut sales turnaround time by roughly 70%.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Can you help with landing pages and creative too? <span class="ico">+</span></button>
+        <div class="faq-a"><p>That's the point of working with me. I design and ship the pages my ads point to — UI, copy, and SEO included — and I brief the creatives that run on them. No hand-offs, no "that's a different team" gaps where conversions go to die.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Why should we work with you? <span class="ico">+</span></button>
+        <div class="faq-a"><p>Because you get a whole growth team in one hire. Most marketers stop at the ad account — I keep going, into the creative, the landing page, the SEO, and the attribution underneath. That means fewer handoffs, faster iteration, and decisions backed by data instead of guesswork.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER / CONTACT ================= -->
+<footer class="site-footer reveal" id="contact">
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-cta">
+        <h2 class="footer-headline">Want to start something that <em>converts?</em></h2>
+        <p class="footer-sub">Or just say hello.</p>
+      </div>
+      <div class="footer-contact">
+        <a class="footer-email" href="mailto:priyanshicreates4u@gmail.com">priyanshicreates4u@gmail.com</a>
+        <div class="footer-links">
+          <span class="footer-links-label">Follow / Contact</span>
+          <a href="https://www.linkedin.com/in/priyanshi-chaudhary-835224259/" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="mailto:priyanshicreates4u@gmail.com">Email</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-wordmark">priyanshicreates4u<span class="wm-dot">.</span></div>
+
+    <div class="footer-bar">
+      <span>© <span id="yr"></span> Priyanshi Chaudhary · Performance Marketer</span>
+      <span>Built end-to-end — like everything else I ship.</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ================= MODAL: LET'S TALK FORM ================= -->
+<div class="modal-overlay" id="modal" role="dialog" aria-modal="true" aria-labelledby="modal-heading" aria-hidden="true">
+  <div class="modal">
+    <div class="modal-top">
+      <button class="modal-close" id="modal-close" type="button" aria-label="Close form">×</button>
+      <span class="eyebrow">Let's talk</span>
+      <h3 id="modal-heading">Tell me a bit about you.</h3>
+      <p>Two required fields, no spam. I'll get back to you soon.</p>
+    </div>
+    <div class="modal-body">
+      <form id="contact-form" novalidate>
+        <div class="field" id="f-name">
+          <label for="in-name">Name</label>
+          <input type="text" id="in-name" name="name" placeholder="Your name" autocomplete="name" />
+          <span class="err">Please enter your name.</span>
+        </div>
+        <div class="field" id="f-email">
+          <label for="in-email">Email</label>
+          <input type="email" id="in-email" name="email" placeholder="you@company.com" autocomplete="email" />
+          <span class="err">Please enter a valid email.</span>
+        </div>
+        <div class="field" id="f-phone">
+          <label for="in-phone">Phone number <span class="opt">— optional</span></label>
+          <input type="tel" id="in-phone" name="phone" placeholder="+91 ..." autocomplete="tel" />
+        </div>
+        <div class="field" id="f-reason">
+          <label for="in-reason">Reason for connecting</label>
+          <select id="in-reason" name="reason">
+            <option value="" disabled selected>Choose one</option>
+            <option value="Networking">Networking</option>
+            <option value="Hiring — Full-time role">Hiring · Full-time role</option>
+            <option value="Hiring — Freelance / Project">Hiring · Freelance / Project</option>
+            <option value="Hiring — Consulting / Advisory">Hiring · Consulting / Advisory</option>
+          </select>
+          <span class="err">Please pick a reason.</span>
+        </div>
+        <button type="submit" class="modal-submit">Send message →</button>
+        <p class="modal-note">Opens your email app with the details pre-filled.</p>
+      </form>
+      <div class="modal-success" id="modal-success">
+        <div class="tick">✓</div>
+        <h4>Almost there!</h4>
+        <p>Your email app should have opened with everything filled in. Just hit send and I'll get back to you soon.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// Nav shadow on scroll
+const nav = document.getElementById('nav');
+addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 8), {passive:true});
+
+// Reveal on scroll
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const io = new IntersectionObserver(es => es.forEach(e => {
+  if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+}), {threshold:.12});
+document.querySelectorAll('.reveal').forEach(el => reduce ? el.classList.add('in') : io.observe(el));
+
+// Ad-card metric counters
+const counters = document.querySelectorAll('.ad-metric b');
+const cio = new IntersectionObserver(es => es.forEach(e => {
+  if(!e.isIntersecting) return;
+  const el = e.target, end = +el.dataset.count,
+        pre = el.dataset.prefix || '', suf = el.dataset.suffix || '';
+  if(reduce){ el.textContent = pre + end + suf; cio.unobserve(el); return; }
+  const t0 = performance.now(), dur = 1400;
+  (function tick(t){
+    const p = Math.min((t - t0) / dur, 1), eased = 1 - Math.pow(1 - p, 3);
+    el.textContent = pre + Math.round(end * eased) + suf;
+    if(p < 1) requestAnimationFrame(tick);
+  })(t0);
+  cio.unobserve(el);
+}), {threshold:.5});
+counters.forEach(c => cio.observe(c));
+
+// Experience expanders
+document.querySelectorAll('.xp-toggle').forEach(btn => {
+  btn.dataset.label = btn.textContent;
+  btn.addEventListener('click', () => {
+    const xp = document.getElementById(btn.dataset.target);
+    const open = xp.classList.toggle('open');
+    btn.setAttribute('aria-expanded', open);
+    btn.textContent = open ? '− Show less' : btn.dataset.label;
+  });
+});
+
+// Experience — reveal/hide the third role card (separate from per-card expanders)
+(function(){
+  var btn = document.getElementById('xp-roles-toggle');
+  if(!btn) return;
+  var cards = document.querySelectorAll('.xp-collapsible');
+  btn.addEventListener('click', function(){
+    var open = btn.getAttribute('aria-expanded') !== 'true';
+    cards.forEach(function(c){ c.classList.toggle('show', open); });
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    btn.textContent = open ? 'Show less' : 'Show more';
+  });
+})();
+
+// Capabilities — progress-driven scroll funnel
+(function(){
+  var steps = Array.prototype.slice.call(document.querySelectorAll('.fstep'));
+  var bands = Array.prototype.slice.call(document.querySelectorAll('.fband'));
+  if(!steps.length) return;
+  function fillTo(idx){
+    bands.forEach(function(b,i){ b.classList.toggle('filled', i <= idx); });
+    steps.forEach(function(s,i){ s.classList.toggle('active', i === idx); });
+  }
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var mobile = matchMedia('(max-width:760px)').matches;
+  if(reduce || mobile){
+    // skip the scroll animation: show everything filled/visible
+    steps.forEach(function(s){ s.classList.add('active'); });
+    bands.forEach(function(b){ b.classList.add('filled'); });
+    return;
+  }
+  fillTo(0);
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){ fillTo(steps.indexOf(e.target)); }
+    });
+  }, {rootMargin:'-45% 0px -45% 0px', threshold:0});
+  steps.forEach(function(s){ io.observe(s); });
+})();
+
+// FAQ accordion
+document.querySelectorAll('.faq-q').forEach(q => q.addEventListener('click', () => {
+  const item = q.parentElement, a = item.querySelector('.faq-a'),
+        open = item.classList.toggle('open');
+  q.setAttribute('aria-expanded', open);
+  a.style.maxHeight = open ? a.scrollHeight + 'px' : 0;
+}));
+
+// ---------- Let's talk modal ----------
+const modal = document.getElementById('modal');
+const form = document.getElementById('contact-form');
+const success = document.getElementById('modal-success');
+let lastFocus = null;
+function openModal(){
+  lastFocus = document.activeElement;
+  modal.classList.add('show');
+  modal.setAttribute('aria-hidden','false');
+  document.body.style.overflow = 'hidden';
+  setTimeout(() => document.getElementById('in-name').focus(), 60);
+}
+function closeModal(){
+  modal.classList.remove('show');
+  modal.setAttribute('aria-hidden','true');
+  document.body.style.overflow = '';
+  if(lastFocus) lastFocus.focus();
+}
+document.querySelectorAll('[data-open-modal]').forEach(b => b.addEventListener('click', openModal));
+document.getElementById('modal-close').addEventListener('click', closeModal);
+modal.addEventListener('click', e => { if(e.target === modal) closeModal(); });
+addEventListener('keydown', e => { if(e.key === 'Escape' && modal.classList.contains('show')) closeModal(); });
+
+// Validation + submit
+function setErr(id, on){ document.getElementById(id).classList.toggle('invalid', on); }
+form.addEventListener('submit', e => {
+  e.preventDefault();
+  const name = document.getElementById('in-name').value.trim();
+  const email = document.getElementById('in-email').value.trim();
+  const phone = document.getElementById('in-phone').value.trim();
+  const reason = document.getElementById('in-reason').value;
+  const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  setErr('f-name', !name);
+  setErr('f-email', !emailOk);
+  setErr('f-reason', !reason);
+  if(!name || !emailOk || !reason) return;
+
+  const subject = encodeURIComponent(`New enquiry — ${reason}`);
+  const body = encodeURIComponent(
+    `Name: ${name}\nEmail: ${email}\nPhone: ${phone || '—'}\nReason for connecting: ${reason}`
+  );
+  window.location.href = `mailto:priyanshicreates4u@gmail.com?subject=${subject}&body=${body}`;
+  form.style.display = 'none';
+  success.classList.add('show');
+});
+
+// Year
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+// ---------- Draggable scatter ("why" section) ----------
+(function(){
+  var canvas = document.getElementById('scatter');
+  if(!canvas) return;
+  var cards = canvas.querySelectorAll('.scard');
+  var zTop = 5;
+  cards.forEach(function(card){
+    card.addEventListener('pointerdown', function(e){
+      if(window.innerWidth <= 760) return;       // static stack on mobile — no drag
+      e.preventDefault();
+      var startX = e.clientX, startY = e.clientY;
+      var startLeft = card.offsetLeft, startTop = card.offsetTop;
+      card.style.zIndex = (++zTop);               // bring to front
+      card.classList.add('dragging');
+      try { card.setPointerCapture(e.pointerId); } catch(_){}
+      function move(ev){
+        card.style.left = (startLeft + ev.clientX - startX) + 'px';
+        card.style.top  = (startTop  + ev.clientY - startY) + 'px';
+      }
+      function up(){
+        card.classList.remove('dragging');
+        card.removeEventListener('pointermove', move);
+        card.removeEventListener('pointerup', up);
+        card.removeEventListener('pointercancel', up);
+      }
+      card.addEventListener('pointermove', move);
+      card.addEventListener('pointerup', up);
+      card.addEventListener('pointercancel', up);
+    });
+  });
+})();
+</script>
+</body>
+</html>
