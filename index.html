@@ -247,10 +247,19 @@ nav.scrolled{border-bottom-color:var(--line);}
 @keyframes ticker{from{transform:translateX(0);}to{transform:translateX(-50%);}}
 
 @media(max-width:760px){
-  .hero{padding:48px 0 72px;}
-  .hero-lower{flex-direction:column;gap:36px;margin-top:38px;}
+  .hero{padding:40px 0 56px;}
+  .hero-title{font-size:clamp(28px,8vw,46px);}
+  .hero-lower{flex-direction:column;gap:34px;margin-top:34px;}
+  .hero-left{max-width:none;}
+  /* CTAs side-by-side, equal width */
+  .hero-ctas{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  .hero-ctas .btn{width:100%;justify-content:center;}
+  /* pointers stack, left-aligned, hairline-separated */
   .hero-pointers{width:100%;max-width:none;text-align:left;}
   .pointer:first-child{border-top:1px solid var(--line);padding-top:16px;}
+  /* runner: smaller + a touch faster on phones */
+  .ticker-track{animation-duration:18s;}
+  .ticker-track span{font-size:11px;padding:0 18px;}
 }
 
 /* ---------- Why (heading + draggable scatter) ---------- */
@@ -314,24 +323,32 @@ nav.scrolled{border-bottom-color:var(--line);}
     touch-action:auto;display:flex;flex-direction:column;gap:16px;
   }
   .scard{
-    position:static !important;transform:none !important;
+    position:relative !important;transform:none !important;
     left:auto !important;top:auto !important;width:auto !important;
-    z-index:auto !important;cursor:default;
+    z-index:2 !important;cursor:default;
   }
-  .scard.imgcard{max-width:320px;}
+  /* mobile: show only the three statement cards, no images */
+  .scard.imgcard{display:none;}
   .scatter-hint{display:none;}
-  .scatter-mark{display:none;}
+  /* keep the watermark, very faint, behind the cards */
+  .scatter-mark{
+    display:flex;z-index:1;
+    font-size:clamp(34px,12vw,74px);
+    color:rgba(22,22,28,.07);
+  }
 }
 
 /* ---------- Experience ---------- */
 .xp-intro{max-width:620px;color:var(--ink-soft);margin-bottom:54px;}
 .xp{
-  display:grid;grid-template-columns:260px 1fr;gap:40px;padding:46px 24px;
-  border-top:1px solid var(--line);border-radius:16px;margin:0 -24px;
-  transition:background .25s ease,box-shadow .25s ease;
+  display:grid;grid-template-columns:260px 1fr;gap:40px;padding:40px 38px;
+  background:var(--card);border:1px solid var(--line);border-radius:16px;
+  box-shadow:0 14px 38px -30px rgba(22,22,28,.32);
+  margin-bottom:18px;
+  transition:box-shadow .25s ease,transform .25s ease;
 }
-.xp:hover{background:var(--card);box-shadow:0 24px 50px -34px rgba(12,12,14,.4);}
-.xp:last-of-type{border-bottom:1px solid var(--line);}
+.xp:hover{box-shadow:0 26px 54px -32px rgba(22,22,28,.4);transform:translateY(-2px);}
+.xp:last-of-type{margin-bottom:0;}
 .xp-when{font-family:var(--mono);font-size:12.5px;letter-spacing:.08em;color:var(--ink-soft);text-transform:uppercase;}
 .xp-when .live{
   display:inline-flex;align-items:center;gap:7px;margin-top:10px;
@@ -381,7 +398,7 @@ nav.scrolled{border-bottom-color:var(--line);}
 .xp-more-btn:hover{background:var(--cobalt);color:#fff;}
 .xp-more-btn:focus-visible{outline:2px solid var(--cobalt);outline-offset:3px;}
 @media(max-width:860px){
-  .xp{grid-template-columns:1fr;gap:14px;padding:36px 0;}
+  .xp{grid-template-columns:1fr;gap:16px;padding:28px 22px;margin-bottom:16px;}
   .xp-points li{grid-template-columns:1fr;gap:4px;padding:12px 0;}
 }
 
@@ -424,6 +441,7 @@ nav.scrolled{border-bottom-color:var(--line);}
 .fstep h3{font-family:var(--display);font-weight:600;font-size:clamp(24px,3vw,34px);line-height:1.15;margin-top:8px;}
 .fstep p{color:rgba(247,246,241,.72);margin:14px 0 20px;max-width:520px;}
 .fband-m{display:none;}
+.fstep-body{display:contents;}
 .chiplist{display:flex;flex-wrap:wrap;gap:10px;}
 .chip{
   font-family:var(--mono);font-size:12.5px;letter-spacing:.04em;
@@ -431,20 +449,57 @@ nav.scrolled{border-bottom-color:var(--line);}
   color:var(--paper);transition:border-color .2s,color .2s,background .2s;
 }
 .chip:hover{border-color:var(--cobalt-lite);color:var(--cobalt-lite);}
-/* ---- mobile: static stacked list, each stage's band inline + filled ---- */
+/* ---- mobile: tap-to-expand funnel accordion with cobalt tint ladder ---- */
 @media(max-width:760px){
   .funnel-wrap{display:block;margin-top:14px;}
   .funnel-left{position:static;}
-  .funnel-head{margin-bottom:8px;}
+  .funnel-head{margin-bottom:18px;}
   .funnel-viz{display:none;}
-  .fstep{min-height:auto;padding:22px 0;opacity:1 !important;transform:none !important;border-top:none;}
-  .fstep .fs-label{display:none;}
-  .fband-m{
-    display:block;background:var(--cobalt);color:#fff;border-radius:12px;
-    padding:14px 16px;margin-bottom:16px;
-    font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+  .funnel-steps{display:flex;flex-direction:column;gap:12px;}
+  .fstep{
+    min-height:auto;display:block;padding:0;border-top:none;
+    opacity:1 !important;transform:none !important;
+    border-radius:14px;overflow:hidden;
   }
-  .fband-m b{display:block;margin-top:3px;font-family:var(--display);font-weight:600;font-size:15px;text-transform:none;letter-spacing:0;}
+  .fstep .fs-label,.fstep h3{display:none;}
+  .fstep-body{display:block;}
+
+  /* header button */
+  .fband-m{
+    display:flex;align-items:center;justify-content:space-between;gap:14px;
+    width:100%;text-align:left;border:none;cursor:pointer;margin:0;
+    padding:16px 18px;font-family:var(--body);color:var(--ink);
+    min-height:64px;
+  }
+  .fband-m .fbm-label{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;opacity:.72;}
+  .fband-m .fbm-title{display:block;font-family:var(--display);font-weight:600;font-size:19px;line-height:1.15;margin-top:3px;}
+  .fband-m .fbm-ico{
+    flex:none;width:30px;height:30px;border-radius:50%;border:1.5px solid currentColor;
+    display:flex;align-items:center;justify-content:center;font-size:19px;line-height:1;
+  }
+  .fband-m .fbm-ico::before{content:"+";}
+  .fband-m[aria-expanded="true"] .fbm-ico::before{content:"\2013";}
+  /* progressive cobalt tint ladder */
+  .fstep[data-step="0"] .fband-m{background:#DCE0FF;}
+  .fstep[data-step="1"] .fband-m{background:#C7CFF9;}
+  .fstep[data-step="2"] .fband-m{background:#9AA8F4;}
+  .fstep[data-step="3"] .fband-m{background:#2B45F0;color:#fff;}
+
+  /* collapsible panel — tinted slightly lighter than its header */
+  .fstep-body{max-height:0;overflow:hidden;transition:max-height .45s ease;padding:0 18px;}
+  .fstep.open .fstep-body{max-height:1000px;}
+  .fstep[data-step="0"] .fstep-body{background:#ECEEFF;}
+  .fstep[data-step="1"] .fstep-body{background:#DCE0FF;}
+  .fstep[data-step="2"] .fstep-body{background:#C7CFF9;}
+  .fstep[data-step="3"] .fstep-body{background:#4F66F3;}
+  .fstep .fstep-body p{color:var(--ink);margin:16px 0 14px;max-width:none;font-size:15px;line-height:1.5;}
+  .fstep[data-step="3"] .fstep-body p{color:#fff;}
+  .fstep .fstep-body .chiplist{padding-bottom:20px;}
+  .fstep .fstep-body .chip{border-color:rgba(22,22,28,.28);color:var(--ink);}
+  .fstep[data-step="3"] .fstep-body .chip{border-color:rgba(255,255,255,.55);color:#fff;}
+}
+@media(max-width:760px) and (prefers-reduced-motion:reduce){
+  .fstep-body{transition:none;}
 }
 
 /* ---------- Toolbox marquee ---------- */
@@ -453,8 +508,8 @@ nav.scrolled{border-bottom-color:var(--line);}
   -webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
   mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
 }
-.marquee-track{display:inline-flex;gap:14px;padding:6px 0;animation:ticker 32s linear infinite;white-space:nowrap;}
-.marquee.reverse .marquee-track{animation-direction:reverse;animation-duration:38s;}
+.marquee-track{display:inline-flex;gap:14px;padding:6px 0;animation:ticker 64s linear infinite;white-space:nowrap;}
+.marquee.reverse .marquee-track{animation-direction:reverse;animation-duration:76s;}
 .tool{
   display:inline-flex;align-items:center;justify-content:center;
   background:var(--card);border:1px solid var(--line);border-radius:12px;
@@ -467,6 +522,13 @@ nav.scrolled{border-bottom-color:var(--line);}
 }
 .tool:hover .tool-logo{filter:none;opacity:1;}
 .tool-txt{display:none;font-size:15px;font-weight:500;color:var(--ink);white-space:nowrap;}
+/* ---- mobile: keep the two-row marquee, just sized down ---- */
+@media(max-width:760px){
+  .toolbox{padding:48px 0;}
+  .tool{height:54px;padding:0 18px;}
+  .tool-logo{height:24px;}
+  .tool-txt{font-size:14px;}
+}
 
 /* ---------- FAQ ---------- */
 .faq-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:64px;align-items:start;}
@@ -487,59 +549,64 @@ nav.scrolled{border-bottom-color:var(--line);}
 .faq-a p{padding:0 4px 22px;color:var(--ink-soft);max-width:560px;}
 @media(max-width:900px){.faq-grid{grid-template-columns:1fr;gap:24px;}}
 
-/* ---------- Footer / Contact (editorial) ---------- */
-.site-footer{padding:100px 0 32px;border-top:1px solid var(--line);margin-top:48px;}
+/* ---------- Footer (contained cobalt card on paper) ---------- */
+.site-footer{background:var(--paper);margin-top:48px;padding:40px 0 64px;}
+.footer-card{
+  background:var(--cobalt);color:#fff;border-radius:20px;
+  padding:80px 64px 36px;
+}
 .footer-top{
   display:grid;grid-template-columns:1.25fr .75fr;gap:60px;align-items:start;
-  padding-bottom:72px;
-}
-.footer-cta{position:relative;padding-top:30px;}
-.footer-cta::before{
-  content:"";position:absolute;left:2px;top:0;
-  width:15px;height:15px;border-radius:50%;background:var(--cobalt);
+  padding-bottom:60px;
 }
 .footer-headline{
-  font-family:var(--display);font-weight:600;
-  font-size:clamp(34px,5.4vw,70px);line-height:1.0;letter-spacing:-.02em;
+  font-family:var(--display);font-weight:600;color:#fff;
+  font-size:clamp(32px,5vw,62px);line-height:1.04;letter-spacing:-.02em;max-width:15ch;
 }
-.footer-headline em{font-style:italic;font-weight:500;color:var(--cobalt);}
-.footer-sub{margin-top:20px;font-size:18px;color:var(--ink-soft);}
-.footer-contact{display:flex;flex-direction:column;gap:36px;padding-top:30px;}
+.footer-headline em{font-style:italic;font-weight:500;}
+.footer-sub{
+  margin-top:16px;font-family:var(--mono);font-size:12px;letter-spacing:.14em;
+  text-transform:uppercase;color:#C7CFF9;
+}
+.footer-contact{display:flex;flex-direction:column;gap:30px;padding-top:6px;}
 .footer-email{
-  font-family:var(--display);font-weight:500;color:var(--ink);
-  font-size:clamp(16px,1.95vw,25px);line-height:1.25;white-space:nowrap;
-  text-decoration:underline;text-decoration-color:var(--cobalt);
-  text-decoration-thickness:2px;text-underline-offset:5px;transition:color .2s;
+  font-family:var(--display);font-weight:500;color:#fff;
+  font-size:clamp(16px,1.7vw,22px);line-height:1.2;word-break:break-word;
+  text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:5px;
+  transition:opacity .2s;
 }
-.footer-email:hover{color:var(--cobalt);}
+.footer-email:hover{opacity:.82;}
 .footer-links{display:flex;flex-direction:column;gap:11px;}
 .footer-links-label{
   font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
-  color:var(--ink-soft);margin-bottom:5px;
+  color:#9AA8F4;margin-bottom:5px;
 }
 .footer-links a{
   width:fit-content;display:inline-flex;align-items:center;gap:9px;
-  font-size:17px;font-weight:500;color:var(--ink);text-decoration:none;transition:color .2s;
+  font-size:17px;font-weight:500;color:#fff;text-decoration:none;transition:opacity .2s;
 }
-.footer-links a::before{content:"\2192";color:var(--cobalt);font-size:14px;}
-.footer-links a:hover{color:var(--cobalt);}
-/* giant full-width brand wordmark */
+.footer-links a::before{content:"\2192";color:#C7CFF9;}
+.footer-links a:hover{opacity:.82;}
+/* large lowercase wordmark — softened to a watermark */
 .footer-wordmark{
-  font-family:var(--display);font-weight:700;color:var(--cobalt);
-  font-size:clamp(30px,6.4vw,82px);line-height:1;letter-spacing:-.03em;
-  white-space:nowrap;padding-top:6px;
+  font-family:var(--display);font-weight:700;color:#fff;opacity:.5;
+  font-size:clamp(38px,8.2vw,104px);line-height:.9;letter-spacing:-.04em;
+  white-space:nowrap;overflow:hidden;padding-top:8px;
 }
-.footer-wordmark .wm-dot{color:var(--cobalt);}
+.footer-wordmark .wm-dot{color:#C7CFF9;}
 /* thin bottom bar */
 .footer-bar{
-  margin-top:26px;padding-top:22px;border-top:1px solid var(--line);
+  margin-top:24px;padding-top:20px;border-top:1px solid #4F66F3;
   display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
-  font-size:13.5px;color:var(--ink-soft);
+  font-family:var(--mono);font-size:11.5px;letter-spacing:.04em;color:#C7CFF9;
 }
 @media(max-width:760px){
-  .site-footer{padding:64px 0 26px;margin-top:24px;}
-  .footer-top{grid-template-columns:1fr;gap:42px;padding-bottom:48px;}
-  .footer-wordmark{font-size:clamp(24px,7vw,54px);}
+  .site-footer{padding:24px 0 40px;margin-top:24px;}
+  .footer-card{border-radius:16px;padding:48px 22px 26px;}
+  .footer-top{grid-template-columns:1fr;gap:34px;padding-bottom:40px;}
+  .footer-headline{font-size:clamp(28px,8vw,44px);max-width:none;}
+  .footer-contact{padding-top:0;}
+  .footer-wordmark{font-size:clamp(24px,8vw,52px);}
   .footer-bar{flex-direction:column;gap:8px;}
 }
 
@@ -853,58 +920,78 @@ nav.scrolled{border-bottom-color:var(--line);}
       <!-- RIGHT: stage detail blocks, revealed in sequence -->
       <div class="funnel-steps">
         <div class="fstep" data-step="0">
-          <div class="fband-m">TOFU · Awareness<b>Get seen by the right people</b></div>
+          <button class="fband-m" type="button" aria-expanded="false" aria-controls="fbody-0">
+            <span class="fbm-text"><span class="fbm-label">TOFU · Awareness</span><span class="fbm-title">Get seen by the right people</span></span>
+            <span class="fbm-ico" aria-hidden="true"></span>
+          </button>
           <span class="fs-label">TOFU · Awareness</span>
           <h3>Get seen by the right people</h3>
-          <p>Audience architecture from historical performance data, creative hooks briefed from real behavioural insight, and awareness campaigns that don't waste impressions on the wrong eyes.</p>
-          <div class="chiplist">
-            <span class="chip">Meta Awareness &amp; Engagement</span>
-            <span class="chip">Google Demand Gen &amp; Display</span>
-            <span class="chip">Audience performance matrix</span>
-            <span class="chip">Creative briefing &amp; storyboarding</span>
-            <span class="chip">Brand messaging</span>
+          <div class="fstep-body" id="fbody-0">
+            <p>Audience architecture from historical performance data, creative hooks briefed from real behavioural insight, and awareness campaigns that don't waste impressions on the wrong eyes.</p>
+            <div class="chiplist">
+              <span class="chip">Meta Awareness &amp; Engagement</span>
+              <span class="chip">Google Demand Gen &amp; Display</span>
+              <span class="chip">Audience performance matrix</span>
+              <span class="chip">Creative briefing &amp; storyboarding</span>
+              <span class="chip">Brand messaging</span>
+            </div>
           </div>
         </div>
 
         <div class="fstep" data-step="1">
-          <div class="fband-m">MOFU · Consideration<b>Earn the second look</b></div>
+          <button class="fband-m" type="button" aria-expanded="false" aria-controls="fbody-1">
+            <span class="fbm-text"><span class="fbm-label">MOFU · Consideration</span><span class="fbm-title">Earn the second look</span></span>
+            <span class="fbm-ico" aria-hidden="true"></span>
+          </button>
           <span class="fs-label">MOFU · Consideration</span>
           <h3>Earn the second look</h3>
-          <p>Retargeting that respects the user, landing pages built specifically for the campaign, and A/B frameworks that keep creative and messaging improving every cycle.</p>
-          <div class="chiplist">
-            <span class="chip">Retargeting &amp; remarketing</span>
-            <span class="chip">Landing page design (end-to-end)</span>
-            <span class="chip">SEO &amp; Quality Score optimisation</span>
-            <span class="chip">Multi-variant A/B testing</span>
-            <span class="chip">Copywriting</span>
+          <div class="fstep-body" id="fbody-1">
+            <p>Retargeting that respects the user, landing pages built specifically for the campaign, and A/B frameworks that keep creative and messaging improving every cycle.</p>
+            <div class="chiplist">
+              <span class="chip">Retargeting &amp; remarketing</span>
+              <span class="chip">Landing page design (end-to-end)</span>
+              <span class="chip">SEO &amp; Quality Score optimisation</span>
+              <span class="chip">Multi-variant A/B testing</span>
+              <span class="chip">Copywriting</span>
+            </div>
           </div>
         </div>
 
         <div class="fstep" data-step="2">
-          <div class="fband-m">BOFU · Conversion<b>Turn intent into pipeline</b></div>
+          <button class="fband-m" type="button" aria-expanded="false" aria-controls="fbody-2">
+            <span class="fbm-text"><span class="fbm-label">BOFU · Conversion</span><span class="fbm-title">Turn intent into pipeline</span></span>
+            <span class="fbm-ico" aria-hidden="true"></span>
+          </button>
           <span class="fs-label">BOFU · Conversion</span>
           <h3>Turn intent into pipeline</h3>
-          <p>Lead-gen campaigns with direct attribution to revenue, CRO on every form and page, and lead-journey insights handed to sales so conversations start warmer.</p>
-          <div class="chiplist">
-            <span class="chip">Meta &amp; Google Lead Gen</span>
-            <span class="chip">CRO &amp; MQL/SQL optimisation</span>
-            <span class="chip">CRM behavioural analysis</span>
-            <span class="chip">Sales enablement from lead journeys</span>
-            <span class="chip">~70% faster sales turnaround</span>
+          <div class="fstep-body" id="fbody-2">
+            <p>Lead-gen campaigns with direct attribution to revenue, CRO on every form and page, and lead-journey insights handed to sales so conversations start warmer.</p>
+            <div class="chiplist">
+              <span class="chip">Meta &amp; Google Lead Gen</span>
+              <span class="chip">CRO &amp; MQL/SQL optimisation</span>
+              <span class="chip">CRM behavioural analysis</span>
+              <span class="chip">Sales enablement from lead journeys</span>
+              <span class="chip">~70% faster sales turnaround</span>
+            </div>
           </div>
         </div>
 
         <div class="fstep" data-step="3">
-          <div class="fband-m">The layer underneath<b>Measure everything</b></div>
+          <button class="fband-m" type="button" aria-expanded="false" aria-controls="fbody-3">
+            <span class="fbm-text"><span class="fbm-label">The layer underneath</span><span class="fbm-title">Measure everything</span></span>
+            <span class="fbm-ico" aria-hidden="true"></span>
+          </button>
           <span class="fs-label">The layer underneath</span>
           <h3>Measure everything</h3>
-          <p>The layer most marketers outsource is the one I own. Custom SQL, self-serve dashboards, event-level attribution — so every decision above the line is backed by something real.</p>
-          <div class="chiplist">
-            <span class="chip">SQL in Metabase</span>
-            <span class="chip">PostHog funnels &amp; events</span>
-            <span class="chip">GA4 &amp; Meta Events Manager</span>
-            <span class="chip">UTM + keyword-level attribution</span>
-            <span class="chip">Attribution system product logic</span>
+          <div class="fstep-body" id="fbody-3">
+            <p>The layer most marketers outsource is the one I own. Custom SQL, self-serve dashboards, event-level attribution — so every decision above the line is backed by something real.</p>
+            <div class="chiplist">
+              <span class="chip">SQL in Metabase</span>
+              <span class="chip">PostHog funnels &amp; events</span>
+              <span class="chip">GA4 &amp; Meta Events Manager</span>
+              <span class="chip">UTM + keyword-level attribution</span>
+              <span class="chip">Attribution system product logic</span>
+            </div>
           </div>
         </div>
       </div>
@@ -1001,26 +1088,28 @@ nav.scrolled{border-bottom-color:var(--line);}
 <!-- ================= FOOTER / CONTACT ================= -->
 <footer class="site-footer reveal" id="contact">
   <div class="wrap">
-    <div class="footer-top">
-      <div class="footer-cta">
-        <h2 class="footer-headline">Want to start something that <em>converts?</em></h2>
-        <p class="footer-sub">Or just say hello.</p>
-      </div>
-      <div class="footer-contact">
-        <a class="footer-email" href="mailto:priyanshicreates4u@gmail.com">priyanshicreates4u@gmail.com</a>
-        <div class="footer-links">
-          <span class="footer-links-label">Follow / Contact</span>
-          <a href="https://www.linkedin.com/in/priyanshi-chaudhary-835224259/" target="_blank" rel="noopener">LinkedIn</a>
-          <a href="mailto:priyanshicreates4u@gmail.com">Email</a>
+    <div class="footer-card">
+      <div class="footer-top">
+        <div class="footer-cta">
+          <h2 class="footer-headline">Ready to make your funnel <em>work?</em></h2>
+          <p class="footer-sub">Or just say hello ↗</p>
+        </div>
+        <div class="footer-contact">
+          <a class="footer-email" href="mailto:priyanshicreates4u@gmail.com">priyanshicreates4u@gmail.com</a>
+          <div class="footer-links">
+            <span class="footer-links-label">Follow / Contact</span>
+            <a href="https://www.linkedin.com/in/priyanshi-chaudhary-835224259/" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="mailto:priyanshicreates4u@gmail.com">Email</a>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="footer-wordmark">priyanshicreates4u<span class="wm-dot">.</span></div>
+      <div class="footer-wordmark">priyanshicreates4u<span class="wm-dot">.</span></div>
 
-    <div class="footer-bar">
-      <span>© <span id="yr"></span> Priyanshi Chaudhary · Performance Marketer</span>
-      <span>Built end-to-end — like everything else I ship.</span>
+      <div class="footer-bar">
+        <span>© <span id="yr"></span> Priyanshi Chaudhary</span>
+        <span>Built end-to-end</span>
+      </div>
     </div>
   </div>
 </footer>
@@ -1126,19 +1215,39 @@ document.querySelectorAll('.xp-toggle').forEach(btn => {
   });
 })();
 
-// Capabilities — progress-driven scroll funnel
+// Capabilities — funnel: mobile tap-to-expand accordion + desktop scroll-fill
 (function(){
+  var stepsWrap = document.querySelector('.funnel-steps');
   var steps = Array.prototype.slice.call(document.querySelectorAll('.fstep'));
   var bands = Array.prototype.slice.call(document.querySelectorAll('.fband'));
   if(!steps.length) return;
+
+  // Accordion: delegated click so it ALWAYS binds (no width check at load).
+  // On desktop the .fband-m headers are display:none, so this never fires there.
+  if(stepsWrap){
+    stepsWrap.addEventListener('click', function(e){
+      var btn = e.target.closest('.fband-m');
+      if(!btn || !stepsWrap.contains(btn)) return;
+      var step = btn.closest('.fstep');
+      var wasOpen = step.classList.contains('open');
+      steps.forEach(function(s){            // one-open-at-a-time: close the others
+        if(s !== step){
+          s.classList.remove('open');
+          var b = s.querySelector('.fband-m'); if(b) b.setAttribute('aria-expanded','false');
+        }
+      });
+      if(wasOpen){ step.classList.remove('open'); btn.setAttribute('aria-expanded','false'); }
+      else { step.classList.add('open'); btn.setAttribute('aria-expanded','true'); }
+    });
+  }
+
+  // Desktop-only scroll-driven fill (skip on mobile and reduced-motion).
   function fillTo(idx){
     bands.forEach(function(b,i){ b.classList.toggle('filled', i <= idx); });
     steps.forEach(function(s,i){ s.classList.toggle('active', i === idx); });
   }
-  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var mobile = matchMedia('(max-width:760px)').matches;
-  if(reduce || mobile){
-    // skip the scroll animation: show everything filled/visible
+  if(matchMedia('(max-width:760px)').matches) return;
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches){
     steps.forEach(function(s){ s.classList.add('active'); });
     bands.forEach(function(b){ b.classList.add('filled'); });
     return;
